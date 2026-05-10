@@ -1,0 +1,157 @@
+{
+  "intents": {
+    "greeting": {
+      "keywords": [
+        "hello",
+        "hi",
+        "hey",
+        "good morning",
+        "good afternoon",
+        "good evening",
+        "howdy",
+        "greetings",
+        "sup",
+        "what's up"
+      ],
+      "responses": [
+        "Hello! Welcome to CampusMate \ud83c\udf93 I'm here to help with lab locations, timings, class schedules, exam info, and faculty details. What would you like to know?",
+        "Hi there! CampusMate at your service. Ask me anything about labs, classes, exams, or faculty!",
+        "Hey! Great to see you. I can help you navigate campus life \u2014 schedules, labs, faculty, you name it!"
+      ]
+    },
+    "lab_location": {
+      "keywords": [
+        "lab",
+        "laboratory",
+        "where is",
+        "location",
+        "room",
+        "block",
+        "building",
+        "computer lab",
+        "physics lab",
+        "chemistry lab",
+        "electronics lab"
+      ],
+      "responses": [
+        "\ud83c\udfdb\ufe0f Here are the lab locations:\n\u2022 Computer Science Lab 1 & 2 \u2192 Block A, Ground Floor (Rooms A-01, A-02)\n\u2022 Electronics & Communication Lab \u2192 Block B, 1st Floor (Room B-104)\n\u2022 Physics Lab \u2192 Block C, Ground Floor (Room C-01)\n\u2022 Chemistry Lab \u2192 Block C, 1st Floor (Room C-102)\n\u2022 Mechanical Workshop \u2192 Block D, Ground Floor\n\u2022 IoT & AI Research Lab \u2192 Block A, 2nd Floor (Room A-205)",
+        "\ud83d\udccd Lab Locations on Campus:\n\u2192 CS Labs (A-01, A-02): Block A, Ground Floor\n\u2192 ECE Lab (B-104): Block B, First Floor\n\u2192 Physics Lab (C-01): Block C, Ground Floor\n\u2192 Chemistry Lab (C-102): Block C, First Floor\n\u2192 AI/IoT Lab (A-205): Block A, Second Floor\n\u2192 Workshop (D-01): Block D, Ground Floor",
+        "Here's a quick map of our labs:\n\ud83d\udd35 Block A: CS Labs (GF) + AI/IoT Lab (2F)\n\ud83d\udfe2 Block B: ECE & Electronics Lab (1F)\n\ud83d\udfe1 Block C: Physics (GF) + Chemistry (1F)\n\ud83d\udd34 Block D: Mechanical Workshop (GF)"
+      ]
+    },
+    "lab_timing": {
+      "keywords": [
+        "lab timing",
+        "lab time",
+        "lab schedule",
+        "lab hours",
+        "lab open",
+        "lab available",
+        "when is lab",
+        "lab session"
+      ],
+      "responses": [
+        "\u23f0 Lab Timings (Monday\u2013Saturday):\n\u2022 CS Lab 1 & 2: 8:00 AM \u2013 6:00 PM\n\u2022 ECE Lab: 9:00 AM \u2013 5:00 PM\n\u2022 Physics Lab: 9:00 AM \u2013 4:00 PM (closed on Saturdays)\n\u2022 Chemistry Lab: 9:00 AM \u2013 4:00 PM (closed on Saturdays)\n\u2022 AI/IoT Research Lab: 10:00 AM \u2013 7:00 PM\n\u2022 Workshop: 8:00 AM \u2013 5:00 PM\n\n\u26a0\ufe0f Labs are closed on Sundays and public holidays.",
+        "\ud83d\udd50 Lab Operating Hours:\nMon\u2013Fri:\n\u2192 CS Labs: 8 AM to 6 PM\n\u2192 ECE Lab: 9 AM to 5 PM\n\u2192 Physics/Chemistry: 9 AM to 4 PM\n\u2192 AI/IoT Lab: 10 AM to 7 PM\nSaturdays: CS & ECE labs only (9 AM\u20131 PM)\nSundays: All labs closed \ud83d\udd12"
+      ]
+    },
+    "class_timing": {
+      "keywords": [
+        "class",
+        "lecture",
+        "timetable",
+        "time table",
+        "schedule",
+        "class time",
+        "period",
+        "slot",
+        "morning",
+        "afternoon",
+        "when does class",
+        "class start",
+        "class end"
+      ],
+      "responses": [
+        "\ud83d\udcc5 Class Schedule (All Departments):\n\n\u23f1\ufe0f Period Timings:\n\u2022 Period 1: 8:00 AM \u2013 8:55 AM\n\u2022 Period 2: 9:00 AM \u2013 9:55 AM\n\u2022 Period 3: 10:00 AM \u2013 10:55 AM\n\u2022 Break:    11:00 AM \u2013 11:15 AM\n\u2022 Period 4: 11:15 AM \u2013 12:10 PM\n\u2022 Lunch:    12:10 PM \u2013 1:00 PM\n\u2022 Period 5: 1:00 PM \u2013 1:55 PM\n\u2022 Period 6: 2:00 PM \u2013 2:55 PM\n\u2022 Period 7: 3:00 PM \u2013 3:55 PM\n\nNote: Lab sessions are 2 periods combined (110 min).",
+        "\ud83d\uddd3\ufe0f Daily Class Timetable:\n1st Period  \u2192 8:00\u20138:55 AM\n2nd Period  \u2192 9:00\u20139:55 AM\n3rd Period  \u2192 10:00\u201310:55 AM\n\u2615 Break     \u2192 11:00\u201311:15 AM\n4th Period  \u2192 11:15 AM\u201312:10 PM\n\ud83c\udf7d\ufe0f Lunch    \u2192 12:10\u20131:00 PM\n5th Period  \u2192 1:00\u20131:55 PM\n6th Period  \u2192 2:00\u20132:55 PM\n7th Period  \u2192 3:00\u20133:55 PM\n\nSaturdays: 4 periods only (8 AM\u201312 PM)"
+      ]
+    },
+    "exam_schedule": {
+      "keywords": [
+        "exam",
+        "test",
+        "assessment",
+        "mid term",
+        "midterm",
+        "end term",
+        "semester exam",
+        "final exam",
+        "internal",
+        "external",
+        "viva",
+        "practical exam",
+        "when is exam",
+        "exams",
+        "test"
+      ],
+      "responses": [
+        "\ud83d\udcdd Examination Schedule (2024\u201325 Odd Semester):\n\n\ud83d\udccc Internal Assessments:\n\u2022 IA-1: August 19\u201323, 2024\n\u2022 IA-2: October 7\u201311, 2024\n\u2022 IA-3: November 18\u201322, 2024\n\n\ud83d\udccc End Semester Exams: December 2\u201320, 2024\n\n\ud83d\udccc Practical/Viva Exams: November 25 \u2013 December 1, 2024\n\n\u26a0\ufe0f Hall tickets distributed 5 days before exam.\nAll exams: 10:00 AM \u2013 1:00 PM (Theory)\nPracticals: 9:00 AM \u2013 12:00 PM",
+        "\ud83d\uddd3\ufe0f Upcoming Exam Dates:\n\u2192 Mid-Semester (IA-2): Oct 7\u201311\n\u2192 IA-3 / Pre-finals: Nov 18\u201322\n\u2192 Practical Exams: Nov 25 \u2013 Dec 1\n\u2192 End Semester Theory: Dec 2\u201320\n\nRemember to collect your hall ticket at least 3 days prior. Good luck! \ud83d\udcda"
+      ]
+    },
+    "faculty_info": {
+      "keywords": [
+        "faculty",
+        "professor",
+        "teacher",
+        "lecturer",
+        "hod",
+        "head of department",
+        "staff",
+        "dr",
+        "contact faculty",
+        "faculty room",
+        "faculty office",
+        "who teaches"
+      ],
+      "responses": [
+        "\ud83d\udc68\u200d\ud83c\udfeb Faculty Directory:\n\n\ud83d\udda5\ufe0f Computer Science & Engineering:\n\u2022 Dr. Rajesh Kumar (HoD) \u2013 Room A-301 | rajesh.kumar@campus.edu\n\u2022 Prof. Anita Sharma \u2013 AI/ML | anita.sharma@campus.edu\n\u2022 Prof. Suresh Babu \u2013 OS & Networks | suresh.babu@campus.edu\n\n\u26a1 Electronics & Communication:\n\u2022 Dr. Meena Pillai (HoD) \u2013 Room B-201 | meena.pillai@campus.edu\n\u2022 Prof. Arjun Das \u2013 VLSI Design | arjun.das@campus.edu\n\n\ud83d\udd2c Physics & Chemistry:\n\u2022 Dr. Priya Nair \u2013 Physics | priya.nair@campus.edu\n\u2022 Dr. Vinod Menon \u2013 Chemistry | vinod.menon@campus.edu\n\n\ud83d\udcd0 Mathematics:\n\u2022 Prof. Lakshmi Iyer \u2013 Room C-301 | lakshmi.iyer@campus.edu",
+        "\ud83d\udccb Faculty Contacts:\n\nCSE Dept:\n\u2192 HoD Dr. Rajesh Kumar: A-301\n\u2192 Prof. Anita Sharma (AI/ML)\n\u2192 Prof. Suresh Babu (OS/Networks)\n\nECE Dept:\n\u2192 HoD Dr. Meena Pillai: B-201\n\u2192 Prof. Arjun Das (VLSI)\n\nScience Dept:\n\u2192 Dr. Priya Nair (Physics)\n\u2192 Dr. Vinod Menon (Chemistry)\n\n\ud83d\udca1 Faculty hours: 9 AM\u20135 PM on weekdays"
+      ]
+    },
+    "farewell": {
+      "keywords": [
+        "bye",
+        "goodbye",
+        "see you",
+        "thanks",
+        "thank you",
+        "ok thanks",
+        "that's all",
+        "no more questions",
+        "exit"
+      ],
+      "responses": [
+        "Goodbye! \ud83d\udc4b All the best with your studies. Feel free to come back anytime!",
+        "See you around campus! \ud83c\udf93 Don't hesitate to ask if you need anything else.",
+        "Take care! Good luck with everything. CampusMate is always here for you! \ud83d\ude0a"
+      ]
+    },
+    "unknown": {
+      "keywords": [],
+      "responses": [
+        "I'm not sure about that. I specialize in campus-related queries \u2014 labs, classes, exams, and faculty. Could you rephrase, or ask something specific about campus life?",
+        "Hmm, I didn't quite catch that. I can help with: lab locations, lab timings, class schedules, exam dates, and faculty information. What would you like to know?",
+        "That's a bit outside my expertise! I'm best at answering questions about labs, lectures, exams, and faculty. Try asking me something campus-related! \ud83c\udfeb"
+      ]
+    }
+  },
+  "campus_info": {
+    "name": "National Institute of Technology",
+    "short_name": "NIT Campus",
+    "address": "NH-45, Tech Nagar, Tamil Nadu \u2013 600001",
+    "phone": "+91-44-2747-0000",
+    "email": "info@nitcampus.edu.in",
+    "website": "www.nitcampus.edu.in"
+  }
+}

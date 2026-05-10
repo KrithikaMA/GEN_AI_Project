@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CampusMate Assistant</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- Background grid decoration -->
+  <div class="bg-grid" aria-hidden="true"></div>
+  <div class="bg-glow" aria-hidden="true"></div>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!--  App Shell                                   -->
+  <!-- ═══════════════════════════════════════════ -->
+  <div class="app-shell">
+
+    <!-- ── Sidebar ──────────────────────────────── -->
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <div class="logo-icon">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+            <path d="M14 2L3 8v12l11 6 11-6V8L14 2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+            <path d="M14 2v18M3 8l11 6 11-6" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="logo-text">
+          <span class="logo-name">CampusMate</span>
+          <span class="logo-tag">AI Assistant</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <p class="nav-label">Ask me about</p>
+        <button class="chip" onclick="sendQuick('Where is the Computer Science lab?')">
+          <span class="chip-icon">📍</span> Lab Locations
+        </button>
+        <button class="chip" onclick="sendQuick('What are the lab timings?')">
+          <span class="chip-icon">⏰</span> Lab Timings
+        </button>
+        <button class="chip" onclick="sendQuick('What is the class timetable?')">
+          <span class="chip-icon">📅</span> Class Schedule
+        </button>
+        <button class="chip" onclick="sendQuick('When are the exams?')">
+          <span class="chip-icon">📝</span> Exam Schedule
+        </button>
+        <button class="chip" onclick="sendQuick('Who are the faculty members?')">
+          <span class="chip-icon">👨‍🏫</span> Faculty Info
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <button class="btn-reset" id="resetBtn" title="Clear conversation">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.51"/>
+          </svg>
+          New Chat
+        </button>
+        <div class="status-pill" id="statusPill">
+          <span class="status-dot"></span>
+          <span id="statusText">Hybrid Mode</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ── Main Chat Area ───────────────────────── -->
+    <main class="chat-main">
+
+      <!-- Header -->
+      <header class="chat-header">
+        <div class="header-info">
+          <h1 class="header-title">Campus Assistant</h1>
+          <p class="header-sub">Powered by Rule Engine + Llama3 (Ollama)</p>
+        </div>
+        <div class="header-badge">
+          <span>REC Campus</span>
+        </div>
+      </header>
+
+      <!-- Messages -->
+      <div class="chat-messages" id="chatMessages">
+
+        <!-- Welcome message -->
+        <div class="message bot-message welcome-message">
+          <div class="avatar bot-avatar">
+            <svg width="18" height="18" viewBox="0 0 28 28" fill="none">
+              <path d="M14 2L3 8v12l11 6 11-6V8L14 2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+              <path d="M14 2v18M3 8l11 6 11-6" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="bubble">
+            <p>👋 Hello! I'm <strong>CampusMate</strong>, your intelligent campus assistant.</p>
+            <p style="margin-top:8px">I can help you with:</p>
+            <ul class="welcome-list">
+              <li>📍 Lab locations & rooms</li>
+              <li>⏰ Lab and class timings</li>
+              <li>📅 Class timetables</li>
+              <li>📝 Exam schedules</li>
+              <li>👨‍🏫 Faculty information</li>
+            </ul>
+            <p style="margin-top:8px;font-size:0.82em;opacity:0.7">Use the quick buttons on the left, or type your question below!</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Input Area -->
+      <div class="chat-input-area">
+        <div class="input-wrapper">
+          <textarea
+            id="userInput"
+            placeholder="Ask about labs, classes, exams, faculty…"
+            rows="1"
+            autocomplete="off"
+            spellcheck="false"
+          ></textarea>
+          <button class="send-btn" id="sendBtn" title="Send message">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+            </svg>
+          </button>
+        </div>
+        <p class="input-hint">Press <kbd>Enter</kbd> to send &nbsp;·&nbsp; <kbd>Shift+Enter</kbd> for new line</p>
+      </div>
+
+    </main>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!--  JavaScript                                  -->
+  <!-- ═══════════════════════════════════════════ -->
+  <script>
+    const chatMessages = document.getElementById('chatMessages');
+    const userInput    = document.getElementById('userInput');
+    const sendBtn      = document.getElementById('sendBtn');
+    const resetBtn     = document.getElementById('resetBtn');
+    const statusText   = document.getElementById('statusText');
+    const statusPill   = document.getElementById('statusPill');
+
+    // ── Auto-resize textarea ──────────────────────
+    userInput.addEventListener('input', () => {
+      userInput.style.height = 'auto';
+      userInput.style.height = Math.min(userInput.scrollHeight, 120) + 'px';
+    });
+
+    // ── Enter key handling ────────────────────────
+    userInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        handleSend();
+      }
+    });
+
+    sendBtn.addEventListener('click', handleSend);
+    resetBtn.addEventListener('click', resetChat);
+
+    // ── Send message ──────────────────────────────
+    async function handleSend() {
+      const message = userInput.value.trim();
+      if (!message) return;
+
+      // Append user bubble
+      appendMessage(message, 'user');
+      userInput.value = '';
+      userInput.style.height = 'auto';
+
+      // Disable input while waiting
+      setInputState(false);
+
+      // Show typing indicator
+      const typingId = showTyping();
+
+      try {
+        const res = await fetch('/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message })
+        });
+
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const data = await res.json();
+
+        removeTyping(typingId);
+        appendMessage(data.response, 'bot', data.source);
+
+      } catch (err) {
+        removeTyping(typingId);
+        appendMessage(
+          '⚠️ Unable to reach the server. Please check if the Flask app is running.',
+          'bot',
+          'error'
+        );
+        console.error('Fetch error:', err);
+      } finally {
+        setInputState(true);
+        userInput.focus();
+      }
+    }
+
+    // ── Quick suggestion buttons ──────────────────
+    function sendQuick(text) {
+      userInput.value = text;
+      handleSend();
+    }
+
+    // ── Append message bubble ─────────────────────
+    function appendMessage(text, role, source = null) {
+      const msgDiv = document.createElement('div');
+      msgDiv.className = `message ${role === 'user' ? 'user-message' : 'bot-message'}`;
+
+      if (role === 'bot') {
+        const avatar = document.createElement('div');
+        avatar.className = 'avatar bot-avatar';
+        avatar.innerHTML = `<svg width="16" height="16" viewBox="0 0 28 28" fill="none">
+          <path d="M14 2L3 8v12l11 6 11-6V8L14 2z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M14 2v18M3 8l11 6 11-6" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+        </svg>`;
+        msgDiv.appendChild(avatar);
+      }
+
+      const bubble = document.createElement('div');
+      bubble.className = 'bubble';
+      bubble.innerHTML = formatText(text);
+
+      // Source badge for bot messages
+      if (role === 'bot' && source && source !== 'error') {
+        const badge = document.createElement('span');
+        badge.className = `source-badge ${source}`;
+        badge.textContent = source === 'rule' ? '⚡ Rule Engine' : '🤖 Llama3';
+        bubble.appendChild(badge);
+
+        // Update status pill
+        updateStatus(source);
+      }
+
+      msgDiv.appendChild(bubble);
+
+      // Animate in
+      msgDiv.style.opacity = '0';
+      msgDiv.style.transform = role === 'user' ? 'translateX(20px)' : 'translateX(-20px)';
+      chatMessages.appendChild(msgDiv);
+
+      requestAnimationFrame(() => {
+        msgDiv.style.transition = 'opacity 0.28s ease, transform 0.28s ease';
+        msgDiv.style.opacity = '1';
+        msgDiv.style.transform = 'translateX(0)';
+      });
+
+      scrollToBottom();
+    }
+
+    // ── Format plain text into HTML ───────────────
+    function formatText(text) {
+      // Escape HTML
+      let safe = text
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
+
+      // Bold (**text**)
+      safe = safe.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+
+      // Bullet lines starting with •, →, *, -
+      safe = safe.replace(/^([•→\-\*]) /gm, '<span class="bullet">$1</span> ');
+
+      // Newlines → <br>
+      safe = safe.replace(/\n/g, '<br>');
+
+      return safe;
+    }
+
+    // ── Typing indicator ──────────────────────────
+    function showTyping() {
+      const id = 'typing-' + Date.now();
+      const div = document.createElement('div');
+      div.id = id;
+      div.className = 'message bot-message typing-msg';
+      div.innerHTML = `
+        <div class="avatar bot-avatar">
+          <svg width="16" height="16" viewBox="0 0 28 28" fill="none">
+            <path d="M14 2L3 8v12l11 6 11-6V8L14 2z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+            <path d="M14 2v18M3 8l11 6 11-6" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="bubble typing-bubble">
+          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+        </div>`;
+      chatMessages.appendChild(div);
+      scrollToBottom();
+      return id;
+    }
+
+    function removeTyping(id) {
+      const el = document.getElementById(id);
+      if (el) el.remove();
+    }
+
+    // ── UI helpers ────────────────────────────────
+    function setInputState(enabled) {
+      userInput.disabled = !enabled;
+      sendBtn.disabled = !enabled;
+      sendBtn.style.opacity = enabled ? '1' : '0.5';
+    }
+
+    function scrollToBottom() {
+      setTimeout(() => {
+        chatMessages.scrollTo({ top: chatMessages.scrollHeight, behavior: 'smooth' });
+      }, 50);
+    }
+
+    function updateStatus(source) {
+      if (source === 'rule') {
+        statusText.textContent = 'Rule Engine';
+        statusPill.className = 'status-pill rule';
+      } else if (source === 'llm') {
+        statusText.textContent = 'Llama3 Active';
+        statusPill.className = 'status-pill llm';
+      }
+      // Reset after 3s
+      setTimeout(() => {
+        statusText.textContent = 'Hybrid Mode';
+        statusPill.className = 'status-pill';
+      }, 3000);
+    }
+
+    // ── Reset conversation ────────────────────────
+    async function resetChat() {
+      try {
+        await fetch('/reset', { method: 'POST' });
+      } catch (_) {}
+
+      // Clear messages except welcome
+      const msgs = chatMessages.querySelectorAll('.message:not(.welcome-message)');
+      msgs.forEach(m => m.remove());
+      userInput.focus();
+    }
+
+    // ── Focus on load ─────────────────────────────
+    window.addEventListener('load', () => userInput.focus());
+  </script>
+</body>
+</html>
