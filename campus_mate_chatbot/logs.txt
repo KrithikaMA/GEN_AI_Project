@@ -1,0 +1,13 @@
+2026-04-18 18:48:51.561826 | Where is the AI lab? | lab_location
+2026-04-18 18:48:54.687781 | Where is the AI lab? | lab_location
+2026-04-18 18:48:59.335801 | Where is the AI lab? | lab_location
+2026-04-18 18:50:59.443127 | Where is the AI lab? | lab_location
+2026-04-18 18:51:24.205492 | Where is the AI lab? | lab_location
+2026-04-18 18:51:28.158913 | Where is the AI lab? | lab_location
+2026-04-18 18:52:32.356587 | where is AI lab? | lab_location
+2026-04-18 18:54:17.562722 | where is AI lab? | lab_location
+2026-04-18 18:54:22.493789 | where is AI lab? | lab_location
+2026-04-18 18:54:58.073187 | where is AI lab? | lab_location
+2026-04-18 18:55:30.612893 | where is AI lab? | lab_location
+2026-04-18 18:55:57.933744 | where is AI lab? | lab_location
+2026-04-18 18:58:01.394055 | where is AI lab? | lab_location

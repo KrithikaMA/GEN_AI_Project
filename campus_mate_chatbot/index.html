@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CampusMate Assistant</title>
+
+    <style>
+    body {
+        font-family: 'Segoe UI';
+        background: linear-gradient(to right, #1e3c72, #2a5298); /* professional blue */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .chat-container {
+        width: 420px;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0px 8px 20px rgba(0,0,0,0.2);
+        overflow: hidden;
+    }
+
+    .header {
+        background: #1e3c72; /* darker blue */
+        color: white;
+        padding: 15px;
+        font-size: 18px;
+        text-align: center;
+    }
+
+    .chat-box {
+        height: 350px;
+        padding: 10px;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .msg {
+        margin: 5px;
+        padding: 10px;
+        border-radius: 10px;
+        max-width: 70%;
+    }
+
+    .user {
+        background: #dbeafe; /* light blue */
+        color: #1e3c72;
+        align-self: flex-end;
+    }
+
+    .bot {
+        background: #f1f5f9; /* soft grey */
+        color: #111827;
+        align-self: flex-start;
+    }
+
+    .input-area {
+        display: flex;
+        border-top: 1px solid #ccc;
+    }
+
+    input {
+        flex: 1;
+        padding: 10px;
+        border: none;
+        outline: none;
+    }
+
+    button {
+        padding: 10px;
+        background: #2a5298; /* main button blue */
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background: #1e3c72; /* hover darker */
+    }
+</style>
+</head>
+
+<body>
+
+<div class="chat-container">
+    <div class="header">🎓 CampusMate Assistant</div>
+
+    <div id="chat-box" class="chat-box"></div>
+
+    <div class="input-area">
+        <input id="user-input" placeholder="Ask about campus..."
+               onkeypress="if(event.key==='Enter') sendMessage()">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+</div>
+
+<script>
+async function sendMessage() {
+    let input = document.getElementById("user-input");
+    let message = input.value.trim();
+
+    if (!message) return;
+
+    let chatBox = document.getElementById("chat-box");
+
+    // User message
+    chatBox.innerHTML += `<div class="msg user">${message}</div>`;
+
+    // Typing indicator
+    chatBox.innerHTML += `<div class="msg bot" id="typing">Typing...</div>`;
+    chatBox.scrollTop = chatBox.scrollHeight;
+
+    try {
+        let response = await fetch("http://127.0.0.1:5000/chat", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ message: message })
+        });
+        console.log("RAW RESPONSE:", response);
+
+        let data;
+
+        try {
+            data = await response.json();
+        } catch (e) {
+            console.error("JSON error:", e);
+            throw new Error("Invalid JSON");
+        }
+
+        document.getElementById("typing").remove();
+
+        // Bot response
+        chatBox.innerHTML += `<div class="msg bot">${data.response}</div>`;
+    } catch (error) {
+        document.getElementById("typing").remove();
+        chatBox.innerHTML += `<div class="msg bot">⚠️ Server error. Check backend.</div>`;
+    }
+
+    input.value = "";
+    chatBox.scrollTop = chatBox.scrollHeight;
+}
+</script>
+
+</body>
+</html>

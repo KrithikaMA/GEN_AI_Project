@@ -1,0 +1,50 @@
+{
+  "greeting": [
+    "Hello! I'm CampusMate . How can I assist you?",
+    "Hi there! Need help with campus info?",
+    "Welcome! Ask me anything about your campus."
+  ],
+
+  "lab_location": [
+    "The AI Lab is in Block B, 2nd Floor.",
+    "You can find the AI Lab in Block B upstairs.",
+    "AI Lab is located in Block B, second floor."
+  ],
+
+  "lab_timing": [
+    "The lab is open from 9 AM to 5 PM.",
+    "Lab timings are 9:00 AM to 5:00 PM."
+  ],
+
+  "class_timing": [
+    "Classes run from 9 AM to 4 PM.",
+    "Typical class timing is 9:00 AM to 4:00 PM."
+  ],
+
+  "exam_schedule": [
+    "Exams start from September 15.",
+    "Mid-sem exams begin on Sept 15."
+  ],
+
+  "faculty_info": [
+    "Dr. Ravi is the HOD of AI.",
+    "The AI department is headed by Dr. Ravi."
+  ],
+
+  "canteen": [
+    "Canteen serves breakfast, lunch, and snacks.",
+    "You can find meals and snacks in the campus canteen."
+  ],
+
+  "identity": [
+    "I am CampusMate Assistant 🤖.",
+    "Your campus assistant here to help you!"
+  ],
+
+  "joke": [
+    "Why did the student bring a ladder? To go to the next level!",
+    "Why study in the sun? Because it's a bright idea!"
+  ],
+
+  "unknown": "Sorry, I didn't understand. Try asking about campus facilities."
+}
